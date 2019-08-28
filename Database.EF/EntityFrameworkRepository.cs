@@ -47,20 +47,9 @@ namespace Database.EF
     {
       Context.Set<T>().Remove(entity);
     }
-
-    public virtual Task RemoveAsync(T entity)
-    {
-      throw new NotImplementedException();
-    }
-
     public virtual void RemoveRange(IEnumerable<T> entities)
     {
       Context.Set<T>().RemoveRange(entities);
-    }
-
-    public Task RemoveRangeAsync(IEnumerable<T> entities)
-    {
-      throw new NotImplementedException();
     }
   }
 }
