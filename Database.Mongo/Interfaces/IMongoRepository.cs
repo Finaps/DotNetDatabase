@@ -8,5 +8,6 @@ namespace Database.Mongo.Interfaces
   {
     Task UpdateAsync(T entity);
     Task RemoveAsync(Guid id);
+    Task RemoveAsync(T entity);
   }
 }

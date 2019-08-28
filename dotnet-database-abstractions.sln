@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Database.Core", "Database.C
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Database.Mongo", "Database.Mongo\Database.Mongo.csproj", "{91B45E55-4362-4D09-A359-A3438D4DDF36}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Database.EF", "Database.EF\Database.EF.csproj", "{ACA98C4E-1CF8-46AB-8C45-FA351F32BB87}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -44,5 +46,17 @@ Global
 		{91B45E55-4362-4D09-A359-A3438D4DDF36}.Release|x64.Build.0 = Release|Any CPU
 		{91B45E55-4362-4D09-A359-A3438D4DDF36}.Release|x86.ActiveCfg = Release|Any CPU
 		{91B45E55-4362-4D09-A359-A3438D4DDF36}.Release|x86.Build.0 = Release|Any CPU
+		{ACA98C4E-1CF8-46AB-8C45-FA351F32BB87}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ACA98C4E-1CF8-46AB-8C45-FA351F32BB87}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ACA98C4E-1CF8-46AB-8C45-FA351F32BB87}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{ACA98C4E-1CF8-46AB-8C45-FA351F32BB87}.Debug|x64.Build.0 = Debug|Any CPU
+		{ACA98C4E-1CF8-46AB-8C45-FA351F32BB87}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{ACA98C4E-1CF8-46AB-8C45-FA351F32BB87}.Debug|x86.Build.0 = Debug|Any CPU
+		{ACA98C4E-1CF8-46AB-8C45-FA351F32BB87}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ACA98C4E-1CF8-46AB-8C45-FA351F32BB87}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ACA98C4E-1CF8-46AB-8C45-FA351F32BB87}.Release|x64.ActiveCfg = Release|Any CPU
+		{ACA98C4E-1CF8-46AB-8C45-FA351F32BB87}.Release|x64.Build.0 = Release|Any CPU
+		{ACA98C4E-1CF8-46AB-8C45-FA351F32BB87}.Release|x86.ActiveCfg = Release|Any CPU
+		{ACA98C4E-1CF8-46AB-8C45-FA351F32BB87}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
