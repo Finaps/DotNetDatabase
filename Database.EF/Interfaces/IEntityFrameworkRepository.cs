@@ -9,5 +9,7 @@ namespace Database.EF.Interfaces
     void AddRange(IEnumerable<T> entities);
     Task AddRangeAsync(IEnumerable<T> entities);
     void RemoveRange(IEnumerable<T> entities);
+    Task<int> CountAsync();
+    int Count();
   }
 }

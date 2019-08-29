@@ -1,5 +1,7 @@
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
+using Database.Core.Exceptions;
 using Database.Mongo.Extentions;
 using Database.Mongo.Interfaces;
 using MongoDB.Driver;
@@ -19,12 +21,22 @@ namespace Database.Mongo
       _queryable = collection.AsQueryable();
     }
 
-    public virtual async Task AddAsync(T entity)
+    public virtual Task AddAsync(T entity)
     {
-      await _collection.InsertOneAsync(entity);
+      return _collection.InsertOneAsync(entity);
     }
 
-    public virtual Task<T> GetAsync(Guid id)
+    public virtual Task<long> CountAsync()
+    {
+      return _collection.CountDocumentsAsync(Builders<T>.Filter.Empty);
+    }
+
+    public virtual Task<List<T>> GetAsync(int limit, int offset)
+    {
+      return _queryable.Skip(offset).Take(limit).ToListAsync();
+    }
+
+    public virtual Task<T> GetByIdAsync(Guid id)
     {
       return _queryable.SingleOrDefaultAsync(entity => entity.Id == id);
     }
@@ -41,7 +53,8 @@ namespace Database.Mongo
     public virtual async Task UpdateAsync(T entity)
     {
       var filterById = MongoCoreExtensions.IdFilter(entity);
-      await _collection.FindOneAndReplaceAsync(filterById, entity);
+      var result = await _collection.FindOneAndReplaceAsync(filterById, entity);
+      throw new EntityNotFoundException();
     }
   }
 }
