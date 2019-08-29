@@ -7,7 +7,7 @@ using MongoDB.Driver;
 
 namespace Database.Test.Repositories
 {
-  public class TestMongoRepository : MongoRepository<TestMongoObject>
+  public class TestMongoRepository : MongoRepository<TestMongoObject>, ITestMongoRepository
   {
     public TestMongoRepository(IMongoCollection<TestMongoObject> collection) : base(collection)
     {
