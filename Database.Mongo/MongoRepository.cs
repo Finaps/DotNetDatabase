@@ -28,7 +28,7 @@ namespace Database.Mongo
       return _collection.InsertOneAsync(entity);
     }
 
-    public Task AddRangeAsync(IEnumerable<T> entities)
+    public virtual Task AddRangeAsync(IEnumerable<T> entities)
     {
       return _collection.InsertManyAsync(entities);
     }
@@ -43,7 +43,7 @@ namespace Database.Mongo
       return _queryable.Skip(offset).Take(limit).ToListAsync();
     }
 
-    public Task<PaginatedResponse<T>> GetAsyncAsPaginatedResponse(int limit, int offset)
+    public virtual Task<PaginatedResponse<T>> GetAsyncAsPaginatedResponse(int limit, int offset)
     {
       return _queryable.AsPaginatedResponse(limit, offset);
     }
