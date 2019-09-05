@@ -4,12 +4,9 @@ using Database.Core.Abstractions;
 
 namespace Database.EF.Interfaces
 {
-  public interface IEntityFrameworkRepository<T> : IRepository<T>, IAsyncRepository<T>
+  public interface IEntityFrameworkRepository<T> : IRepository<T> where T : class
   {
-    void AddRange(IEnumerable<T> entities);
-    Task AddRangeAsync(IEnumerable<T> entities);
     void RemoveRange(IEnumerable<T> entities);
-    Task<int> CountAsync();
-    int Count();
+    void Remove(T entity);
   }
 }

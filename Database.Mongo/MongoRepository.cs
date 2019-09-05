@@ -2,14 +2,16 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Database.Core.Exceptions;
+using Database.Core.Models;
 using Database.Mongo.Extentions;
 using Database.Mongo.Interfaces;
+using Database.Mongo.Pagination;
 using MongoDB.Driver;
 using MongoDB.Driver.Linq;
 
 namespace Database.Mongo
 {
-  public class MongoRepository<T> : IMongoRepository<T> where T : IMongoModel
+  public abstract class MongoRepository<T> : IMongoRepository<T> where T : class, IMongoModel
   {
     protected readonly IMongoQueryable<T> _queryable;
     protected readonly IMongoCollection<T> _collection;
@@ -26,6 +28,11 @@ namespace Database.Mongo
       return _collection.InsertOneAsync(entity);
     }
 
+    public Task AddRangeAsync(IEnumerable<T> entities)
+    {
+      return _collection.InsertManyAsync(entities);
+    }
+
     public virtual Task<long> CountAsync()
     {
       return _collection.CountDocumentsAsync(Builders<T>.Filter.Empty);
@@ -34,6 +41,11 @@ namespace Database.Mongo
     public virtual Task<List<T>> GetAsync(int limit, int offset)
     {
       return _queryable.Skip(offset).Take(limit).ToListAsync();
+    }
+
+    public Task<PaginatedResponse<T>> GetAsyncAsPaginatedResponse(int limit, int offset)
+    {
+      return _queryable.AsPaginatedResponse(limit, offset);
     }
 
     public virtual Task<T> GetByIdAsync(Guid id)
