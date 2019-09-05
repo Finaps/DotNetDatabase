@@ -62,11 +62,10 @@ namespace Database.Mongo
       return _collection.DeleteOneAsync(mongoModel => mongoModel.Id == id);
     }
 
-    public virtual async Task UpdateAsync(T entity)
+    public virtual Task UpdateAsync(T entity)
     {
       var filterById = MongoCoreExtensions.IdFilter(entity);
-      var result = await _collection.FindOneAndReplaceAsync(filterById, entity);
-      throw new EntityNotFoundException();
+      return _collection.FindOneAndReplaceAsync(filterById, entity);
     }
   }
 }
