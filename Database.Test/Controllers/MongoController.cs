@@ -47,8 +47,9 @@ namespace Database.Test.Controllers
 
     // DELETE api/values/5
     [HttpDelete("{id}")]
-    public void Delete(int id)
+    public async Task Delete(Guid id)
     {
+      await _testMongoRepository.RemoveAsync(id);
     }
   }
 }
