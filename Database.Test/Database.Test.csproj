@@ -3,6 +3,7 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp2.2</TargetFramework>
     <AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel>
+    <IsPackable>false</IsPackable>
   </PropertyGroup>
 
   <ItemGroup>
@@ -12,7 +13,7 @@
     <PackageReference Include="MongoDB.Driver" Version="2.8.1" />
   </ItemGroup>
 
-  
+
   <ItemGroup>
     <ProjectReference Include="..\Database.Mongo\Database.Mongo.csproj" />
     <ProjectReference Include="..\Database.EF\Database.EF.csproj" />
