@@ -33,7 +33,7 @@ namespace Database.EF
     {
       return Context.Set<T>().Skip(offset).Take(limit).ToList();
     }
-    public Task<PaginatedResponse<T>> GetAsyncAsPaginatedResponse(int limit, int offset)
+    public virtual Task<PaginatedResponse<T>> GetAsyncAsPaginatedResponse(int limit, int offset)
     {
       return Context.Set<T>().AsQueryable().AsPaginatedResponse(limit, offset);
     }
