@@ -59,6 +59,14 @@ namespace Database.FunctionalTests.Mongo
       }
     }
 
+    public static class Put
+    {
+      public static string UpdateTestData(Guid id)
+      {
+        return $"{baseUrl}/{id}";
+      }
+    }
+
 
   }
 }

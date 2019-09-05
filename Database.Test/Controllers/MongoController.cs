@@ -41,8 +41,10 @@ namespace Database.Test.Controllers
 
     // PUT api/values/5
     [HttpPut("{id}")]
-    public void Put(int id, [FromBody] string value)
+    public async Task<ActionResult<TestMongoObject>> Put([FromBody] TestMongoObject value)
     {
+      await _testMongoRepository.UpdateAsync(value);
+      return value;
     }
 
     // DELETE api/values/5

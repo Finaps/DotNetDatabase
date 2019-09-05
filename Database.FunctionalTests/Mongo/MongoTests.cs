@@ -73,7 +73,7 @@ namespace Database.FunctionalTests.Mongo
     }
 
     [Fact]
-    public async Task TestName()
+    public async Task CreateTest()
     {
       var toCreate = new TestMongoObject()
       {
@@ -94,6 +94,37 @@ namespace Database.FunctionalTests.Mongo
         var result = JsonConvert.DeserializeObject<TestMongoObject>(jsonString);
 
         Assert.NotEqual(Guid.Empty, result.Id);
+      }
+    }
+
+    [Fact]
+    public async Task UpdateTest()
+    {
+      var idToUpdate = Guid.Parse("164661d5-aeff-445a-8d35-5815ba7d92bb");
+      var newString = "nice";
+      var ToUpdate = new TestMongoObject()
+      {
+        Id = idToUpdate,
+        CoolString = newString
+      };
+
+      var json = JsonConvert.SerializeObject(ToUpdate);
+      var stringContent = new StringContent(json, UnicodeEncoding.UTF8, "application/json");
+
+      using (var server = CreateServer())
+      {
+        var putResponse = await server.CreateClient()
+        .PutAsync(Put.UpdateTestData(idToUpdate), stringContent);
+
+        putResponse.EnsureSuccessStatusCode();
+
+        var getResponse = await server.CreateClient()
+        .GetAsync(Get.TestDataById(idToUpdate));
+
+        var jsonString = await getResponse.Content.ReadAsStringAsync();
+        var result = JsonConvert.DeserializeObject<TestMongoObject>(jsonString);
+
+        Assert.Equal(newString, result.CoolString);
       }
     }
 
